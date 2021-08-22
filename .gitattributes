@@ -1,0 +1,2 @@
+.gitattributes !filter !diff
+"Discord Farming/secret.json" filter=git-crypt diff=git-crypt
