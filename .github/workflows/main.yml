@@ -38,7 +38,7 @@ jobs:
       check: ${{ steps.run_tests.outputs.test }}
   dispatch-dalsp:
     needs: dal-check-update
-    if: needs.check-update.outputs.check == 'true'
+    if: needs.dal-check-update.outputs.check == 'true'
     name: Dispatch to `n0k0m3/DateALiveData`
     runs-on: ubuntu-latest
     steps:
