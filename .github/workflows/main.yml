@@ -6,7 +6,7 @@ name: Github Action cronjob
 on:
   workflow_dispatch:
   schedule:    
-    - cron: "*/30 * * * *"
+    - cron: "*/60 * * * *"
 
 jobs:
   discord_messages:
