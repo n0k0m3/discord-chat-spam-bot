@@ -5,8 +5,8 @@ name: Github Action cronjob
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-  schedule:    
-    - cron: "*/60 * * * *"
+  # schedule:    
+  #   - cron: "*/60 * * * *"
 
 jobs:
   discord_messages:
@@ -21,33 +21,4 @@ jobs:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - name: Post farming messages
         run: |
-          python "Discord Farming/discordmsg.py"
-  dal-check-update:
-    name: Check DALSP for new content
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Check tool
-        run: |
-          wget https://raw.githubusercontent.com/n0k0m3/DateALiveData/master/.github/workflows/check.py
-          wget https://raw.githubusercontent.com/n0k0m3/DateALiveData/master/version.txt
-      - name: Print check result
-        id: run_tests
-        run: |
-          python check.py
-    outputs:
-      check: ${{ steps.run_tests.outputs.test }}
-  dispatch-dalsp:
-    needs: dal-check-update
-    if: needs.dal-check-update.outputs.check == 'true'
-    name: Dispatch to `n0k0m3/DateALiveData`
-    runs-on: ubuntu-latest
-    steps:
-      - name: Emit repository_dispatch
-        uses: mvasigh/dispatch-action@main
-        with:
-          # You should create a personal access token and store it in your repository
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: DateALiveData
-          owner: n0k0m3
-          event_type: private_action
-
+          python "discord_farming/discordmsg.py"
